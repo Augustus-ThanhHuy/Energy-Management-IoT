@@ -1,0 +1,13 @@
+
+.header__content {
+    white-space: nowrap;
+        /* Ngăn chữ xuống dòng */
+    width: auto;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+        /* Căn giữa nội dung */
+        display: flex;
+        justify-content: center;
+        /* Căn giữa theo chiều ngang */
+}

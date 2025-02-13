@@ -1,0 +1,44 @@
+.Map_container {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    
+}
+
+.Map_info {
+    display: flex;
+    font-size: 14px;
+    flex-direction: row;
+    /* Đặt các phần tử theo chiều ngang */
+    justify-content: start;
+    /* Cách đều các thẻ p */
+    /* Căn giữa các thẻ p theo chiều dọc */
+    gap: 20px;
+    /* Khoảng cách giữa các thẻ p theo chiều ngang */
+}
+
+.Map_info p {
+    display: flex;
+    /* Đảm bảo nội dung trong thẻ p căn giữa theo chiều dọc */
+}
+
+.Map_info strong {
+    width: 80px;
+    /* Đặt chiều rộng cố định cho nhãn */
+    display: inline-block;
+    /* Để nhãn và giá trị thẳng hàng */
+}
+
+
+.Map_content {
+    width: 700px;
+        padding: 12px;
+        height: auto;
+        border: 2px solid #DDDDDD;
+        border-radius: 8px;
+        box-shadow: 4px 8px #EBE9F7;
+        margin-top: 15px;
+        background: white;
+}

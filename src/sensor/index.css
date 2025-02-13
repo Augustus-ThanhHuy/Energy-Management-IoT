@@ -1,0 +1,29 @@
+.sensor__card{
+    display: flex;
+    gap: 40px;
+    height: 250px;
+    width: 1050px;
+    font-weight: bold;
+}
+.sensor__content{
+    font-weight: 700;
+    font-size: 24px;
+}
+.sensor__card__colum{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+/* Responsive - Mobile */
+@media screen and (max-width: 768px) {
+    .sensor__card {
+        flex-direction: column;
+        /* Chuyển thành dạng dọc */
+        gap: 20px;
+    }
+
+    .sensor__card__column {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

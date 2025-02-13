@@ -1,0 +1,29 @@
+body {
+    background: #F4F4F5;
+}
+
+.master-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 12px;
+    border-radius: 12px;
+    width: 1800px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.54 );
+}
+
+.content {
+    width: 200px;
+    margin-left: 100px;
+    
+}
+.content__header{
+    width: 1000px;
+    display: flex;
+            justify-content: center;
+    text-align: center;
+}
+.content__children {
+    margin-top: 20px;
+}

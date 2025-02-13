@@ -1,0 +1,51 @@
+.Radar_container {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    
+}
+
+.Radar_content {
+    width: 400px;
+    padding: 12px;
+    height: 400px;
+    margin-left: 200px;
+    border: 2px solid #DDDDDD;
+    border-radius: 8px;
+    box-shadow: 4px 8px #EBE9F7;
+    margin-top: 15px;
+    background: white;
+}
+
+.Radar_controls {
+    width: 800px;
+    font-size: 24px;
+    justify-content: space-between;
+}
+
+.Radar_select {
+    display: flex;
+    /* Sử dụng Flexbox để sắp xếp các phần tử */
+    flex-direction: row;
+    /* Sắp xếp theo chiều ngang */
+    gap: 10px;
+    /* Khoảng cách giữa các phần tử */
+    align-items: center;
+    /* Căn giữa các phần tử theo chiều dọc */
+}
+
+.Radar_select label {
+    font-weight: bold;
+    /* Tạo độ đậm cho các nhãn */
+}
+
+.Radar_select select {
+    padding: 5px 10px;
+    /* Thêm padding cho các dropdown */
+    font-size: 14px;
+    /* Đặt kích thước font cho các dropdown */
+    margin-top: 5px;
+    /* Thêm khoảng cách giữa label và select */
+}

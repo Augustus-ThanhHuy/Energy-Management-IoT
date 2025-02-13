@@ -1,0 +1,34 @@
+.Card_energy{
+    height: 120px;
+    width: 100%;
+    border: 4px solid #DDDDDD;
+    border-radius: 20px;
+    margin: 2px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 8px #EBE9F7;
+    gap: 25px;
+    padding: 4px;
+    svg{
+        height: 64px;
+        width: 64px;
+    }
+    .Card__icon_energy{
+        color: #E85C0D;
+            background: #FABC3F;
+            border-radius: 12px;
+    }
+    .Card__text{
+        color: #848484;
+        font-size: large;
+    }
+    .Card__number{
+        color: #848484;
+        font-size: xx-large;
+    }
+    
+    
+
+}

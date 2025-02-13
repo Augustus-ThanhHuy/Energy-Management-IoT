@@ -1,0 +1,53 @@
+.Room_container {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 2px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.Chart_content {
+    display: flex;
+    width: 1050px;
+    height: auto;
+    gap: 10px;
+}
+
+.Line_content {
+    width: 550px;
+    padding: 2px;
+    height: 250px;
+    border: 2px solid #DDDDDD;
+    border-radius: 8px;
+    box-shadow: 4px 8px #EBE9F7;
+    background: white;
+}
+
+.Bar_content {
+    width: 500px;
+    padding: 2px;
+    height: 250px;
+    border: 2px solid #DDDDDD;
+    border-radius: 8px;
+    box-shadow: 4px 8px #EBE9F7;
+    background: white;
+}
+
+.sensor__card {
+    display: flex;
+    gap: 20px;
+    height: 200px;
+    width: 1050px;
+    font-weight: bold;
+}
+
+.sensor__content {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.sensor__card__colum {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
