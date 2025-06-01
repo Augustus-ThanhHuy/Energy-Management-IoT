@@ -1,0 +1,65 @@
+.header__content {
+  white-space: nowrap;
+  width: auto;
+  font-weight: 600; /* Giảm độ đậm để nhẹ nhàng */
+  font-size: 22px; /* Font nhỏ gọn */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+  padding: 15px 20px; /* Padding nhẹ */
+  background: #f8fafc; /* Nền xám nhạt đơn giản */
+  border-radius: 4px; /* Bo góc nhẹ */
+  margin: 10px 0;
+}
+
+.header__content p {
+  margin: 0;
+  color: #1f2937; /* Xám đậm cho tiêu đề chính */
+}
+
+.title__mini {
+  color: #3b82f6; /* Xanh dương nhạt */
+  font-size: 12px;
+  font-weight: 400; /* Font nhẹ */
+  text-transform: uppercase; /* Chữ in hoa nhẹ nhàng */
+}
+
+/* Animation fade-in */
+.fade-in {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header__content {
+    font-size: 20px;
+    padding: 10px 15px;
+  }
+
+  .title__mini {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__content {
+    font-size: 18px;
+    padding: 8px 10px;
+  }
+
+  .title__mini {
+    font-size: 10px;
+  }
+}

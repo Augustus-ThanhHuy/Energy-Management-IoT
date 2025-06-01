@@ -1,0 +1,306 @@
+.control__container {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  border-radius: 16px; /* Slightly rounded corners for the container */
+}
+
+/* Room Titles */
+.room__title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 0 40px;
+}
+
+.room__title {
+  font-size: 22px;
+  font-weight: 700; /* Bolder font for emphasis */
+  color: #2c3e50;
+  position: relative;
+  padding-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: color 0.2s ease;
+}
+
+.room__title:hover {
+  color: #3498db; /* Bright blue on hover for vibrancy */
+}
+
+.room__title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(52, 152, 219, 0.2), #3498db, rgba(52, 152, 219, 0.2));
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3); /* Shadow for the underline */
+}
+
+/* Room Panels Layout */
+.control__container__row {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.room__panel {
+  width: 50%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 10px rgba(52, 152, 219, 0.2); /* Added blue border shadow */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Device Grid Layout */
+.device__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.lamp__section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.device__section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Lamp Items */
+.lamp__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #e1e5eb;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 0 8px rgba(52, 152, 219, 0.2); /* Added blue border shadow */
+  transition: all 0.2s ease;
+}
+
+.lamp__item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 0 12px rgba(52, 152, 219, 0.4); /* Enhanced shadow on hover */
+  border-color: #3498db;
+}
+
+.lamp__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(145deg, #f7e1a1, #fff5d1); /* Light yellow gradient for lamp */
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(247, 225, 161, 0.5), 0 0 5px rgba(247, 225, 161, 0.3); /* Enhanced yellow border shadow */
+  transition: transform 0.2s ease;
+}
+
+.lamp__item:hover .lamp__icon {
+  transform: scale(1.1); /* Slight scale on hover for emphasis */
+}
+
+.lamp__icon svg {
+  font-size: 24px;
+  color: #2c3e50; /* Darker color for contrast */
+}
+
+.lamp__name {
+  font-size: 16px;
+  font-weight: 600; /* Bolder font for emphasis */
+  color: #2c3e50;
+  flex-grow: 1;
+  margin-left: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: color 0.2s ease;
+}
+
+.lamp__item:hover .lamp__name {
+  color: #3498db; /* Bright blue on hover for vibrancy */
+}
+
+/* Device Cards */
+.device__card {
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e1e5eb;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 0 8px rgba(52, 152, 219, 0.2); /* Added blue border shadow */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.2s ease;
+}
+
+.device__card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 0 12px rgba(52, 152, 219, 0.4); /* Enhanced shadow on hover */
+  border-color: #3498db;
+}
+
+.device__header {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e1e5eb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Shadow for the header underline */
+}
+
+.device__name {
+  font-size: 18px;
+  font-weight: 700; /* Bolder font for emphasis */
+  color: #2c3e50;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: color 0.2s ease;
+}
+
+.device__card:hover .device__name {
+  color: #3498db; /* Bright blue on hover for vibrancy */
+}
+
+.device__icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.device__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+/* Specific styling for Power icon */
+.device__card:nth-child(2) .device__icon {
+  background: linear-gradient(145deg, #f1c40f, #f9e79f); /* Electric yellow gradient for power */
+  box-shadow: 0 0 8px rgba(241, 196, 15, 0.5), 0 0 5px rgba(241, 196, 15, 0.3); /* Enhanced yellow border shadow */
+}
+
+/* Specific styling for Air Conditioner icon */
+.device__card:nth-child(1) .device__icon {
+  background: linear-gradient(145deg, #3498db, #5dade2); /* Blue-to-lighter-blue gradient */
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.5), 0 0 5px rgba(93, 173, 226, 0.3); /* Enhanced blue border shadow */
+}
+
+.device__card:hover .device__icon {
+  transform: scale(1.1); /* Slight scale on hover for emphasis */
+}
+
+.device__icon svg {
+  font-size: 30px;
+  color: #ffffff; /* White for contrast against gradient */
+}
+
+.device__card:nth-child(2) .device__icon svg {
+  color: #2c3e50; /* Darker color for contrast against electric yellow */
+}
+
+.device__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.device__status {
+  font-size: 14px;
+  font-weight: 600; /* Bolder font for emphasis */
+  color: #7f8c8d;
+  min-width: 40px;
+  text-align: left;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: color 0.2s ease;
+}
+
+.device__card:hover .device__status {
+  color: #3498db; /* Bright blue on hover for vibrancy */
+}
+
+/* Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e1e5eb;
+  transition: 0.3s;
+  border-radius: 26px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1); /* Border shadow for the switch */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.1); /* Enhanced shadow for the slider knob */
+}
+
+input:checked + .slider {
+  background-color: #143D60;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5), inset 2px 2px 5px rgba(0, 0, 0, 0.1); /* Blue border shadow when active */
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Responsive layout */
+@media (max-width: 992px) {
+  .control__container__row {
+    flex-direction: column;
+  }
+  
+  .room__panel {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .device__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .room__title-wrapper {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 0;
+  }
+}

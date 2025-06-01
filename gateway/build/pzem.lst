@@ -1,0 +1,508 @@
+ARM GAS  /tmp/ccnPZJR8.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"pzem.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/pzem.c"
+  18              		.section	.text.pzem_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	pzem_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	pzem_Init:
+  26              	.LVL0:
+  27              	.LFB65:
+   1:Core/Src/pzem.c **** #include "pzem.h"
+   2:Core/Src/pzem.c **** #include "stdint.h"
+   3:Core/Src/pzem.c **** 
+   4:Core/Src/pzem.c **** uint8_t buf[8] = {0xF8, 0x04, 0x00, 0x00, 0x00, 0x0A, 0x64, 0x64};
+   5:Core/Src/pzem.c **** uint8_t rst_buf[4] = {0xF8, 0x42, 0xC2, 0x41};
+   6:Core/Src/pzem.c **** uint8_t res_buf[25];
+   7:Core/Src/pzem.c **** uint8_t flag = 0;
+   8:Core/Src/pzem.c **** uint8_t rst_flag = 0;
+   9:Core/Src/pzem.c **** uint8_t scr_flag = 0;
+  10:Core/Src/pzem.c **** UART_HandleTypeDef uart;
+  11:Core/Src/pzem.c **** 
+  12:Core/Src/pzem.c **** // Hàm khởi tạo UART và reset cảm biến PZEM
+  13:Core/Src/pzem.c **** void pzem_Init(UART_HandleTypeDef *huart)
+  14:Core/Src/pzem.c **** {
+  28              		.loc 1 14 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 14 1 is_stmt 0 view .LVU1
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  38 0002 0446     		mov	r4, r0
+  15:Core/Src/pzem.c ****     HAL_UART_Transmit(huart, (uint8_t *)rst_buf, 4, 10);
+  39              		.loc 1 15 5 is_stmt 1 view .LVU2
+  40 0004 0A23     		movs	r3, #10
+  41 0006 0422     		movs	r2, #4
+  42 0008 0749     		ldr	r1, .L3
+  43 000a FFF7FEFF 		bl	HAL_UART_Transmit
+ARM GAS  /tmp/ccnPZJR8.s 			page 2
+
+
+  44              	.LVL1:
+  16:Core/Src/pzem.c ****     HAL_UART_Receive(huart, res_buf, 25, 250);
+  45              		.loc 1 16 5 view .LVU3
+  46 000e FA23     		movs	r3, #250
+  47 0010 1922     		movs	r2, #25
+  48 0012 0649     		ldr	r1, .L3+4
+  49 0014 2046     		mov	r0, r4
+  50 0016 FFF7FEFF 		bl	HAL_UART_Receive
+  51              	.LVL2:
+  17:Core/Src/pzem.c ****     uart = *huart; // Lưu lại cấu trúc UART hợp lệ
+  52              		.loc 1 17 5 view .LVU4
+  53              		.loc 1 17 10 is_stmt 0 view .LVU5
+  54 001a 4822     		movs	r2, #72
+  55 001c 2146     		mov	r1, r4
+  56 001e 0448     		ldr	r0, .L3+8
+  57 0020 FFF7FEFF 		bl	memcpy
+  58              	.LVL3:
+  18:Core/Src/pzem.c **** }
+  59              		.loc 1 18 1 view .LVU6
+  60 0024 10BD     		pop	{r4, pc}
+  61              	.LVL4:
+  62              	.L4:
+  63              		.loc 1 18 1 view .LVU7
+  64 0026 00BF     		.align	2
+  65              	.L3:
+  66 0028 00000000 		.word	rst_buf
+  67 002c 00000000 		.word	res_buf
+  68 0030 00000000 		.word	uart
+  69              		.cfi_endproc
+  70              	.LFE65:
+  72              		.section	.text.pzem_READ,"ax",%progbits
+  73              		.align	1
+  74              		.global	pzem_READ
+  75              		.syntax unified
+  76              		.thumb
+  77              		.thumb_func
+  79              	pzem_READ:
+  80              	.LVL5:
+  81              	.LFB66:
+  19:Core/Src/pzem.c **** 
+  20:Core/Src/pzem.c **** // Hàm đọc dữ liệu từ cảm biến PZEM
+  21:Core/Src/pzem.c **** void pzem_READ(PZEM *pzemhandle)
+  22:Core/Src/pzem.c **** {
+  82              		.loc 1 22 1 is_stmt 1 view -0
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86              		.loc 1 22 1 is_stmt 0 view .LVU9
+  87 0000 70B5     		push	{r4, r5, r6, lr}
+  88              	.LCFI1:
+  89              		.cfi_def_cfa_offset 16
+  90              		.cfi_offset 4, -16
+  91              		.cfi_offset 5, -12
+  92              		.cfi_offset 6, -8
+  93              		.cfi_offset 14, -4
+  94 0002 0546     		mov	r5, r0
+  23:Core/Src/pzem.c ****     HAL_UART_Transmit(&uart, (uint8_t *)&buf, 8, 20);
+ARM GAS  /tmp/ccnPZJR8.s 			page 3
+
+
+  95              		.loc 1 23 5 is_stmt 1 view .LVU10
+  96 0004 364E     		ldr	r6, .L7
+  97 0006 1423     		movs	r3, #20
+  98 0008 0822     		movs	r2, #8
+  99 000a 3649     		ldr	r1, .L7+4
+ 100 000c 3046     		mov	r0, r6
+ 101              	.LVL6:
+ 102              		.loc 1 23 5 is_stmt 0 view .LVU11
+ 103 000e FFF7FEFF 		bl	HAL_UART_Transmit
+ 104              	.LVL7:
+  24:Core/Src/pzem.c ****     HAL_UART_Receive(&uart, res_buf, 25, 250);
+ 105              		.loc 1 24 5 is_stmt 1 view .LVU12
+ 106 0012 354C     		ldr	r4, .L7+8
+ 107 0014 FA23     		movs	r3, #250
+ 108 0016 1922     		movs	r2, #25
+ 109 0018 2146     		mov	r1, r4
+ 110 001a 3046     		mov	r0, r6
+ 111 001c FFF7FEFF 		bl	HAL_UART_Receive
+ 112              	.LVL8:
+  25:Core/Src/pzem.c **** 
+  26:Core/Src/pzem.c ****     pzemhandle->voltage = ((uint32_t)res_buf[3] << 8 | (uint32_t)res_buf[4]) / 10.0;
+ 113              		.loc 1 26 5 view .LVU13
+ 114              		.loc 1 26 45 is_stmt 0 view .LVU14
+ 115 0020 E078     		ldrb	r0, [r4, #3]	@ zero_extendqisi2
+ 116              		.loc 1 26 73 view .LVU15
+ 117 0022 2379     		ldrb	r3, [r4, #4]	@ zero_extendqisi2
+ 118              		.loc 1 26 78 view .LVU16
+ 119 0024 43EA0020 		orr	r0, r3, r0, lsl #8
+ 120 0028 FFF7FEFF 		bl	__aeabi_ui2d
+ 121              	.LVL9:
+ 122 002c 0022     		movs	r2, #0
+ 123 002e 2F4B     		ldr	r3, .L7+12
+ 124 0030 FFF7FEFF 		bl	__aeabi_ddiv
+ 125              	.LVL10:
+ 126 0034 FFF7FEFF 		bl	__aeabi_d2f
+ 127              	.LVL11:
+ 128              		.loc 1 26 25 view .LVU17
+ 129 0038 2860     		str	r0, [r5]	@ float
+  27:Core/Src/pzem.c ****     pzemhandle->current = ((uint32_t)res_buf[5] << 8 | (uint32_t)res_buf[6] | (uint32_t)res_buf[7] 
+ 130              		.loc 1 27 5 is_stmt 1 view .LVU18
+ 131              		.loc 1 27 45 is_stmt 0 view .LVU19
+ 132 003a 6279     		ldrb	r2, [r4, #5]	@ zero_extendqisi2
+ 133              		.loc 1 27 73 view .LVU20
+ 134 003c A379     		ldrb	r3, [r4, #6]	@ zero_extendqisi2
+ 135              		.loc 1 27 54 view .LVU21
+ 136 003e 43EA0223 		orr	r3, r3, r2, lsl #8
+ 137              		.loc 1 27 96 view .LVU22
+ 138 0042 E279     		ldrb	r2, [r4, #7]	@ zero_extendqisi2
+ 139              		.loc 1 27 77 view .LVU23
+ 140 0044 43EA0263 		orr	r3, r3, r2, lsl #24
+ 141              		.loc 1 27 125 view .LVU24
+ 142 0048 207A     		ldrb	r0, [r4, #8]	@ zero_extendqisi2
+ 143              		.loc 1 27 136 view .LVU25
+ 144 004a 43EA0040 		orr	r0, r3, r0, lsl #16
+ 145 004e FFF7FEFF 		bl	__aeabi_ui2d
+ 146              	.LVL12:
+ 147 0052 0022     		movs	r2, #0
+ARM GAS  /tmp/ccnPZJR8.s 			page 4
+
+
+ 148 0054 264B     		ldr	r3, .L7+16
+ 149 0056 FFF7FEFF 		bl	__aeabi_ddiv
+ 150              	.LVL13:
+ 151 005a FFF7FEFF 		bl	__aeabi_d2f
+ 152              	.LVL14:
+ 153              		.loc 1 27 25 view .LVU26
+ 154 005e 6860     		str	r0, [r5, #4]	@ float
+  28:Core/Src/pzem.c ****     pzemhandle->power = ((uint32_t)res_buf[9] << 8 | (uint32_t)res_buf[10] | (uint32_t)res_buf[11] 
+ 155              		.loc 1 28 5 is_stmt 1 view .LVU27
+ 156              		.loc 1 28 43 is_stmt 0 view .LVU28
+ 157 0060 627A     		ldrb	r2, [r4, #9]	@ zero_extendqisi2
+ 158              		.loc 1 28 71 view .LVU29
+ 159 0062 A37A     		ldrb	r3, [r4, #10]	@ zero_extendqisi2
+ 160              		.loc 1 28 52 view .LVU30
+ 161 0064 43EA0223 		orr	r3, r3, r2, lsl #8
+ 162              		.loc 1 28 95 view .LVU31
+ 163 0068 E27A     		ldrb	r2, [r4, #11]	@ zero_extendqisi2
+ 164              		.loc 1 28 76 view .LVU32
+ 165 006a 43EA0263 		orr	r3, r3, r2, lsl #24
+ 166              		.loc 1 28 125 view .LVU33
+ 167 006e 207B     		ldrb	r0, [r4, #12]	@ zero_extendqisi2
+ 168              		.loc 1 28 137 view .LVU34
+ 169 0070 43EA0040 		orr	r0, r3, r0, lsl #16
+ 170 0074 FFF7FEFF 		bl	__aeabi_ui2d
+ 171              	.LVL15:
+ 172 0078 0022     		movs	r2, #0
+ 173 007a 1C4B     		ldr	r3, .L7+12
+ 174 007c FFF7FEFF 		bl	__aeabi_ddiv
+ 175              	.LVL16:
+ 176 0080 FFF7FEFF 		bl	__aeabi_d2f
+ 177              	.LVL17:
+ 178              		.loc 1 28 23 view .LVU35
+ 179 0084 A860     		str	r0, [r5, #8]	@ float
+  29:Core/Src/pzem.c ****     pzemhandle->energy = ((uint32_t)res_buf[13] << 8 | (uint32_t)res_buf[14] | (uint32_t)res_buf[15
+ 180              		.loc 1 29 5 is_stmt 1 view .LVU36
+ 181              		.loc 1 29 44 is_stmt 0 view .LVU37
+ 182 0086 627B     		ldrb	r2, [r4, #13]	@ zero_extendqisi2
+ 183              		.loc 1 29 73 view .LVU38
+ 184 0088 A37B     		ldrb	r3, [r4, #14]	@ zero_extendqisi2
+ 185              		.loc 1 29 54 view .LVU39
+ 186 008a 43EA0223 		orr	r3, r3, r2, lsl #8
+ 187              		.loc 1 29 97 view .LVU40
+ 188 008e E27B     		ldrb	r2, [r4, #15]	@ zero_extendqisi2
+ 189              		.loc 1 29 78 view .LVU41
+ 190 0090 43EA0263 		orr	r3, r3, r2, lsl #24
+ 191              		.loc 1 29 127 view .LVU42
+ 192 0094 207C     		ldrb	r0, [r4, #16]	@ zero_extendqisi2
+ 193              		.loc 1 29 24 view .LVU43
+ 194 0096 43EA0040 		orr	r0, r3, r0, lsl #16
+ 195 009a FFF7FEFF 		bl	__aeabi_ui2f
+ 196              	.LVL18:
+ 197 009e 6861     		str	r0, [r5, #20]	@ float
+  30:Core/Src/pzem.c ****     pzemhandle->frequency = ((uint32_t)res_buf[17] << 8 | (uint32_t)res_buf[18]) / 10.0;
+ 198              		.loc 1 30 5 is_stmt 1 view .LVU44
+ 199              		.loc 1 30 47 is_stmt 0 view .LVU45
+ 200 00a0 607C     		ldrb	r0, [r4, #17]	@ zero_extendqisi2
+ 201              		.loc 1 30 76 view .LVU46
+ARM GAS  /tmp/ccnPZJR8.s 			page 5
+
+
+ 202 00a2 A37C     		ldrb	r3, [r4, #18]	@ zero_extendqisi2
+ 203              		.loc 1 30 82 view .LVU47
+ 204 00a4 43EA0020 		orr	r0, r3, r0, lsl #8
+ 205 00a8 FFF7FEFF 		bl	__aeabi_ui2d
+ 206              	.LVL19:
+ 207 00ac 0022     		movs	r2, #0
+ 208 00ae 0F4B     		ldr	r3, .L7+12
+ 209 00b0 FFF7FEFF 		bl	__aeabi_ddiv
+ 210              	.LVL20:
+ 211 00b4 FFF7FEFF 		bl	__aeabi_d2f
+ 212              	.LVL21:
+ 213              		.loc 1 30 27 view .LVU48
+ 214 00b8 2861     		str	r0, [r5, #16]	@ float
+  31:Core/Src/pzem.c ****     pzemhandle->pf = ((uint32_t)res_buf[19] << 8 | (uint32_t)res_buf[20]) / 100.0;
+ 215              		.loc 1 31 5 is_stmt 1 view .LVU49
+ 216              		.loc 1 31 40 is_stmt 0 view .LVU50
+ 217 00ba E07C     		ldrb	r0, [r4, #19]	@ zero_extendqisi2
+ 218              		.loc 1 31 69 view .LVU51
+ 219 00bc 237D     		ldrb	r3, [r4, #20]	@ zero_extendqisi2
+ 220              		.loc 1 31 75 view .LVU52
+ 221 00be 43EA0020 		orr	r0, r3, r0, lsl #8
+ 222 00c2 FFF7FEFF 		bl	__aeabi_ui2d
+ 223              	.LVL22:
+ 224 00c6 0022     		movs	r2, #0
+ 225 00c8 0A4B     		ldr	r3, .L7+20
+ 226 00ca FFF7FEFF 		bl	__aeabi_ddiv
+ 227              	.LVL23:
+ 228 00ce FFF7FEFF 		bl	__aeabi_d2f
+ 229              	.LVL24:
+ 230              		.loc 1 31 20 view .LVU53
+ 231 00d2 E860     		str	r0, [r5, #12]	@ float
+  32:Core/Src/pzem.c ****     pzemhandle->alarm = ((uint32_t)res_buf[21] << 8 | (uint32_t)res_buf[22]);
+ 232              		.loc 1 32 5 is_stmt 1 view .LVU54
+ 233              		.loc 1 32 43 is_stmt 0 view .LVU55
+ 234 00d4 627D     		ldrb	r2, [r4, #21]	@ zero_extendqisi2
+ 235              		.loc 1 32 72 view .LVU56
+ 236 00d6 A37D     		ldrb	r3, [r4, #22]	@ zero_extendqisi2
+ 237              		.loc 1 32 53 view .LVU57
+ 238 00d8 43EA0223 		orr	r3, r3, r2, lsl #8
+ 239              		.loc 1 32 23 view .LVU58
+ 240 00dc 2B83     		strh	r3, [r5, #24]	@ movhi
+  33:Core/Src/pzem.c **** }
+ 241              		.loc 1 33 1 view .LVU59
+ 242 00de 70BD     		pop	{r4, r5, r6, pc}
+ 243              	.LVL25:
+ 244              	.L8:
+ 245              		.loc 1 33 1 view .LVU60
+ 246              		.align	2
+ 247              	.L7:
+ 248 00e0 00000000 		.word	uart
+ 249 00e4 00000000 		.word	buf
+ 250 00e8 00000000 		.word	res_buf
+ 251 00ec 00002440 		.word	1076101120
+ 252 00f0 00408F40 		.word	1083129856
+ 253 00f4 00005940 		.word	1079574528
+ 254              		.cfi_endproc
+ 255              	.LFE66:
+ARM GAS  /tmp/ccnPZJR8.s 			page 6
+
+
+ 257              		.section	.text.pzem_CheckConnection,"ax",%progbits
+ 258              		.align	1
+ 259              		.global	pzem_CheckConnection
+ 260              		.syntax unified
+ 261              		.thumb
+ 262              		.thumb_func
+ 264              	pzem_CheckConnection:
+ 265              	.LFB67:
+  34:Core/Src/pzem.c **** 
+  35:Core/Src/pzem.c **** // Hàm kiểm tra kết nối với cảm biến PZEM qua UART
+  36:Core/Src/pzem.c **** bool pzem_CheckConnection(void)
+  37:Core/Src/pzem.c **** {
+ 266              		.loc 1 37 1 is_stmt 1 view -0
+ 267              		.cfi_startproc
+ 268              		@ args = 0, pretend = 0, frame = 40
+ 269              		@ frame_needed = 0, uses_anonymous_args = 0
+ 270 0000 30B5     		push	{r4, r5, lr}
+ 271              	.LCFI2:
+ 272              		.cfi_def_cfa_offset 12
+ 273              		.cfi_offset 4, -12
+ 274              		.cfi_offset 5, -8
+ 275              		.cfi_offset 14, -4
+ 276 0002 8BB0     		sub	sp, sp, #44
+ 277              	.LCFI3:
+ 278              		.cfi_def_cfa_offset 56
+  38:Core/Src/pzem.c ****     uint8_t check_buf[8] = {0xB0, 0xC0, 0xA8, 0x01, 0x01, 0x00, 0x00, 0x1A}; // Gói yêu cầu ki�
+ 279              		.loc 1 38 5 view .LVU62
+ 280              		.loc 1 38 13 is_stmt 0 view .LVU63
+ 281 0004 134B     		ldr	r3, .L14
+ 282 0006 0DF1200C 		add	ip, sp, #32
+ 283 000a 93E80300 		ldm	r3, {r0, r1}
+ 284 000e 8CE80300 		stm	ip, {r0, r1}
+  39:Core/Src/pzem.c ****     uint8_t response_buf[25] = {0};                                          // Buffer nhận dữ 
+ 285              		.loc 1 39 5 is_stmt 1 view .LVU64
+ 286              		.loc 1 39 13 is_stmt 0 view .LVU65
+ 287 0012 01AC     		add	r4, sp, #4
+ 288 0014 0023     		movs	r3, #0
+ 289 0016 0193     		str	r3, [sp, #4]
+ 290 0018 0293     		str	r3, [sp, #8]
+ 291 001a 0393     		str	r3, [sp, #12]
+ 292 001c 0493     		str	r3, [sp, #16]
+ 293 001e 0593     		str	r3, [sp, #20]
+ 294 0020 0693     		str	r3, [sp, #24]
+ 295 0022 8DF81C30 		strb	r3, [sp, #28]
+  40:Core/Src/pzem.c **** 
+  41:Core/Src/pzem.c ****     // Gửi lệnh kiểm tra kết nối
+  42:Core/Src/pzem.c ****     HAL_UART_Transmit(&uart, check_buf, sizeof(check_buf), 10);
+ 296              		.loc 1 42 5 is_stmt 1 view .LVU66
+ 297 0026 0C4D     		ldr	r5, .L14+4
+ 298 0028 0A23     		movs	r3, #10
+ 299 002a 0822     		movs	r2, #8
+ 300 002c 6146     		mov	r1, ip
+ 301 002e 2846     		mov	r0, r5
+ 302 0030 FFF7FEFF 		bl	HAL_UART_Transmit
+ 303              	.LVL26:
+  43:Core/Src/pzem.c **** 
+  44:Core/Src/pzem.c ****     // Nhận dữ liệu phản hồi từ cảm biến
+ARM GAS  /tmp/ccnPZJR8.s 			page 7
+
+
+  45:Core/Src/pzem.c ****     if (HAL_UART_Receive(&uart, response_buf, 25, 250) == HAL_OK)
+ 304              		.loc 1 45 5 view .LVU67
+ 305              		.loc 1 45 9 is_stmt 0 view .LVU68
+ 306 0034 FA23     		movs	r3, #250
+ 307 0036 1922     		movs	r2, #25
+ 308 0038 2146     		mov	r1, r4
+ 309 003a 2846     		mov	r0, r5
+ 310 003c FFF7FEFF 		bl	HAL_UART_Receive
+ 311              	.LVL27:
+ 312              		.loc 1 45 8 discriminator 1 view .LVU69
+ 313 0040 28B9     		cbnz	r0, .L11
+  46:Core/Src/pzem.c ****     {
+  47:Core/Src/pzem.c ****         // Kiểm tra dữ liệu trả về có hợp lệ không (ví dụ: kiểm tra header ho�
+  48:Core/Src/pzem.c ****         if (response_buf[0] == 0xB0) // Giả sử 0xB0 là mã trả về hợp lệ từ cảm bi
+ 314              		.loc 1 48 9 is_stmt 1 view .LVU70
+ 315              		.loc 1 48 25 is_stmt 0 view .LVU71
+ 316 0042 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 317              		.loc 1 48 12 view .LVU72
+ 318 0046 B02B     		cmp	r3, #176
+ 319 0048 02D1     		bne	.L10
+  49:Core/Src/pzem.c ****         {
+  50:Core/Src/pzem.c ****             return true; // Kết nối tốt
+ 320              		.loc 1 50 20 view .LVU73
+ 321 004a 0120     		movs	r0, #1
+ 322 004c 00E0     		b	.L10
+ 323              	.L11:
+  51:Core/Src/pzem.c ****         }
+  52:Core/Src/pzem.c ****     }
+  53:Core/Src/pzem.c **** 
+  54:Core/Src/pzem.c ****     return false; // Không có phản hồi hoặc phản hồi không hợp lệ
+ 324              		.loc 1 54 12 view .LVU74
+ 325 004e 0020     		movs	r0, #0
+ 326              	.L10:
+  55:Core/Src/pzem.c **** }...
+ 327              		.loc 1 55 1 view .LVU75
+ 328 0050 0BB0     		add	sp, sp, #44
+ 329              	.LCFI4:
+ 330              		.cfi_def_cfa_offset 12
+ 331              		@ sp needed
+ 332 0052 30BD     		pop	{r4, r5, pc}
+ 333              	.L15:
+ 334              		.align	2
+ 335              	.L14:
+ 336 0054 00000000 		.word	.LANCHOR0
+ 337 0058 00000000 		.word	uart
+ 338              		.cfi_endproc
+ 339              	.LFE67:
+ 341              		.global	uart
+ 342              		.section	.bss.uart,"aw",%nobits
+ 343              		.align	2
+ 346              	uart:
+ 347 0000 00000000 		.space	72
+ 347      00000000 
+ 347      00000000 
+ 347      00000000 
+ 347      00000000 
+ 348              		.global	scr_flag
+ARM GAS  /tmp/ccnPZJR8.s 			page 8
+
+
+ 349              		.section	.bss.scr_flag,"aw",%nobits
+ 352              	scr_flag:
+ 353 0000 00       		.space	1
+ 354              		.global	rst_flag
+ 355              		.section	.bss.rst_flag,"aw",%nobits
+ 358              	rst_flag:
+ 359 0000 00       		.space	1
+ 360              		.global	flag
+ 361              		.section	.bss.flag,"aw",%nobits
+ 364              	flag:
+ 365 0000 00       		.space	1
+ 366              		.global	res_buf
+ 367              		.section	.bss.res_buf,"aw",%nobits
+ 368              		.align	2
+ 371              	res_buf:
+ 372 0000 00000000 		.space	25
+ 372      00000000 
+ 372      00000000 
+ 372      00000000 
+ 372      00000000 
+ 373              		.global	rst_buf
+ 374              		.section	.data.rst_buf,"aw"
+ 375              		.align	2
+ 378              	rst_buf:
+ 379 0000 F842C241 		.ascii	"\370B\302A"
+ 380              		.global	buf
+ 381              		.section	.data.buf,"aw"
+ 382              		.align	2
+ 385              	buf:
+ 386 0000 F8040000 		.ascii	"\370\004\000\000\000\012dd"
+ 386      000A6464 
+ 387              		.section	.rodata
+ 388              		.align	2
+ 389              		.set	.LANCHOR0,. + 0
+ 390              	.LC0:
+ 391 0000 B0C0A801 		.ascii	"\260\300\250\001\001\000\000\032"
+ 391      0100001A 
+ 392              		.text
+ 393              	.Letext0:
+ 394              		.file 2 "/home/sano/project/gateway/tool/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/arm-none
+ 395              		.file 3 "/home/sano/project/gateway/tool/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/arm-none
+ 396              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 397              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 398              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 399              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
+ 400              		.file 8 "Core/Inc/pzem.h"
+ 401              		.file 9 "<built-in>"
+ARM GAS  /tmp/ccnPZJR8.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pzem.c
+     /tmp/ccnPZJR8.s:19     .text.pzem_Init:00000000 $t
+     /tmp/ccnPZJR8.s:25     .text.pzem_Init:00000000 pzem_Init
+     /tmp/ccnPZJR8.s:66     .text.pzem_Init:00000028 $d
+     /tmp/ccnPZJR8.s:378    .data.rst_buf:00000000 rst_buf
+     /tmp/ccnPZJR8.s:371    .bss.res_buf:00000000 res_buf
+     /tmp/ccnPZJR8.s:346    .bss.uart:00000000 uart
+     /tmp/ccnPZJR8.s:73     .text.pzem_READ:00000000 $t
+     /tmp/ccnPZJR8.s:79     .text.pzem_READ:00000000 pzem_READ
+     /tmp/ccnPZJR8.s:248    .text.pzem_READ:000000e0 $d
+     /tmp/ccnPZJR8.s:385    .data.buf:00000000 buf
+     /tmp/ccnPZJR8.s:258    .text.pzem_CheckConnection:00000000 $t
+     /tmp/ccnPZJR8.s:264    .text.pzem_CheckConnection:00000000 pzem_CheckConnection
+     /tmp/ccnPZJR8.s:336    .text.pzem_CheckConnection:00000054 $d
+     /tmp/ccnPZJR8.s:343    .bss.uart:00000000 $d
+     /tmp/ccnPZJR8.s:352    .bss.scr_flag:00000000 scr_flag
+     /tmp/ccnPZJR8.s:353    .bss.scr_flag:00000000 $d
+     /tmp/ccnPZJR8.s:358    .bss.rst_flag:00000000 rst_flag
+     /tmp/ccnPZJR8.s:359    .bss.rst_flag:00000000 $d
+     /tmp/ccnPZJR8.s:364    .bss.flag:00000000 flag
+     /tmp/ccnPZJR8.s:365    .bss.flag:00000000 $d
+     /tmp/ccnPZJR8.s:368    .bss.res_buf:00000000 $d
+     /tmp/ccnPZJR8.s:375    .data.rst_buf:00000000 $d
+     /tmp/ccnPZJR8.s:382    .data.buf:00000000 $d
+     /tmp/ccnPZJR8.s:388    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Transmit
+HAL_UART_Receive
+memcpy
+__aeabi_ui2d
+__aeabi_ddiv
+__aeabi_d2f
+__aeabi_ui2f

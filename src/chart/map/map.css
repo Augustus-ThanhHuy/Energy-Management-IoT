@@ -1,0 +1,149 @@
+.Map_container {
+    padding: 30px;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e6efff 100%); /* Gradient nền nhẹ */
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Bóng đổ nổi bật */
+    margin: 20px; /* Khoảng cách lề ngoài */
+    width: calc(100% - 40px); /* Rộng toàn bộ trang, trừ margin 20px mỗi bên */
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu đầy trang */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease; /* Hiệu ứng mượt mà */
+  }
+  
+  .Map_container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #464AAD, #6b7cff); /* Gradient chữ */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Bóng chữ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .map-header-icon {
+    font-size: 28px;
+    color: #464AAD;
+  }
+  
+  .Map_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Nền trắng mờ */
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Map_info p {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+  
+  .Map_info strong {
+    width: 80px;
+    display: inline-block;
+    font-weight: 600;
+    color: #464AAD;
+  }
+  
+  .Map_content {
+    width: 100%; /* Rộng toàn bộ */
+    max-width: 1200px; /* Giới hạn tối đa để không quá rộng trên màn lớn */
+    height: 500px; /* Tăng chiều cao bản đồ */
+    border: 3px solid transparent; /* Viền gradient */
+    border-radius: 12px;
+    background: linear-gradient(white, white), linear-gradient(90deg, #464AAD, #6b7cff); /* Gradient viền */
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Bóng đổ nổi */
+    margin-top: 15px;
+    overflow: hidden; /* Bo góc cho iframe */
+  }
+  
+  .Map_content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  /* Animation fade-in cho bản đồ */
+  .fade-in-map {
+    animation: fadeIn 0.8s ease-in forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .Map_container {
+      margin: 10px;
+      padding: 20px;
+      width: calc(100% - 20px); /* Rộng toàn bộ, trừ margin 10px mỗi bên */
+    }
+  
+    .Map_container h2 {
+      font-size: 22px;
+    }
+  
+    .Map_info {
+      flex-direction: column;
+      gap: 15px;
+      font-size: 14px;
+      text-align: center;
+    }
+  
+    .Map_info p {
+      justify-content: center;
+    }
+  
+    .Map_content {
+      height: 400px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .Map_container {
+      margin: 5px;
+      width: calc(100% - 10px);
+    }
+  
+    .Map_container h2 {
+      font-size: 20px;
+    }
+  
+    .Map_info {
+      font-size: 13px;
+      gap: 10px;
+    }
+  
+    .Map_content {
+      height: 300px;
+    }
+  
+    .map-header-icon {
+      font-size: 20px;
+    }
+  }

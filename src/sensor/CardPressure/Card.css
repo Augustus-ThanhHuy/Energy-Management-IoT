@@ -1,0 +1,22 @@
+.Card_pers {
+    height: 94%;
+    width: 180px;
+    border: 4px solid #DDDDDD;
+    border-radius: 12px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 4px 8px #EBE9F7;
+    svg {
+        height: 64px;
+        width: 64px;
+    }
+    .Card__icon_pers{
+        color: #E85C0D;
+        background: #FABC3F;
+        border-radius: 12px;
+    }
+}

@@ -1,0 +1,24 @@
+.Time_set {
+    display: flex;
+    gap: 16px; /* Khoảng cách giữa các cặp label + input */
+    font-size: 18px;
+    width: 100%;
+  }
+  
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa label và input */
+  }
+  .field label {
+    margin-bottom: 5px; /* khoảng cách giữa label và input */
+    font-weight: bold;  /* chữ label đậm hơn */
+  }
+  
+  .field input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 250px; /* độ rộng input */
+  }

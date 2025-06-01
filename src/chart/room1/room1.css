@@ -1,0 +1,374 @@
+.Room_container {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 2px;
+  width: 100%;
+  margin-left: 20px;
+}
+
+.Chart_content {
+  display: flex;
+  margin-top: 10px;
+  width: 1150px;
+  height: auto;
+  gap: 10px;
+}
+
+.sensor__content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  font-weight: 700;
+  font-size: 24px;
+  border: 2px solid #EBE9F7;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.Line_container {
+  display: flex;
+  justify-content: start;
+  gap: 30px;
+  padding: 12px;
+}
+
+.Line_content {
+  width: 850px;
+  padding: 2px;
+  height: auto;
+  min-height: 250px;
+  border: 1px solid #DDDDDD;
+  border-radius: 2px;
+  box-shadow: 2px 4px #EBE9F7;
+  background: white;
+}
+
+.sensor__card {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 20px;
+  width: 310px;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.Bar_container {
+  display: flex;
+  border: 2px solid #EBE9F7;
+  box-shadow: 4px 8px #EBE9F7;
+  gap: 25px;
+  background: white;
+  height: 550px;
+  padding: 12px;
+}
+
+.Bar_chart {
+  width: 400px;
+  height: 450px;
+  padding: 15px;
+  border-radius: 2px;
+  background: white;
+}
+
+.donut_chart {
+  width: 400px;
+  height: 400px;
+  border-radius: 2px;
+  background: white;
+  padding: 12px;
+}
+
+/* Phần thống kê của Bar */
+.Bar_content {
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+/* Danh sách các mục thống kê */
+.Bar_list_item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Mỗi mục thống kê (Trung bình ngày, Max ngày, Min ngày) */
+.Bar_para_item_day,
+.Bar_para_item_month,
+.Bar_para_item_year {
+  flex: 1;
+  min-width: 120px;
+  background: #f1f3f5;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.Bar_para_item_day:hover,
+.Bar_para_item_month:hover,
+.Bar_para_item_year:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Văn bản trong mục thống kê */
+.Bar_para_item_day span,
+.Bar_para_item_month span,
+.Bar_para_item_year span {
+  display: block;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Tiêu đề (Trung bình ngày, Max ngày, Min ngày) */
+.Bar_para_item_day span:first-child,
+.Bar_para_item_month span:first-child,
+.Bar_para_item_year span:first-child {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+/* Giá trị (12, 23, 41) */
+.Bar_para_item_day span:last-child,
+.Bar_para_item_month span:last-child,
+.Bar_para_item_year span:last-child {
+  font-size: 18px;
+  font-weight: bold;
+  color: #10b981;
+}
+
+.donut_container {
+  display: flex;
+  border: 2px solid #EBE9F7;
+  box-shadow: 4px 8px #EBE9F7;
+  gap: 25px;
+  background: white;
+}
+
+/* Phần thống kê của Doughnut */
+.donut_content {
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+/* Danh sách các mục thống kê */
+.donut_list_item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Mỗi mục thống kê (Trung bình ngày, Max ngày, Min ngày) */
+.donut_para_item_day,
+.donut_para_item_month,
+.donut_para_item_year {
+  flex: 1;
+  min-width: 120px;
+  background: #f1f3f5;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.donut_para_item_day:hover,
+.donut_para_item_month:hover,
+.donut_para_item_year:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Văn bản trong mục thống kê */
+.donut_para_item_day span,
+.donut_para_item_month span,
+.donut_para_item_year span {
+  display: block;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Tiêu đề (Trung bình ngày, Max ngày, Min ngày) */
+.donut_para_item_day span:first-child,
+.donut_para_item_month span:first-child,
+.donut_para_item_year span:first-child {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+/* Giá trị (12, 23, 41) */
+.donut_para_item_day span:last-child,
+.donut_para_item_month span:last-child,
+.donut_para_item_year span:last-child {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+/* Style cho dropdown chọn biến trong Line Chart */
+.variable-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-left: 12px;
+}
+
+.variable-selector label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.variable-selector select {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f1f3f5;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.variable-selector select:hover {
+  border-color: #4285F4;
+}
+
+.variable-selector select:focus {
+  outline: none;
+  border-color: #4285F4;
+  box-shadow: 0 0 5px rgba(66, 133, 244, 0.3);
+}
+
+/* Style cho dropdown chọn biến trong Bar Chart */
+.chart-type-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.chart-type-selector label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.chart-type-selector select {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f1f3f5;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chart-type-selector select:hover {
+  border-color: #4285F4;
+}
+
+.chart-type-selector select:focus {
+  outline: none;
+  border-color: #4285F4;
+  box-shadow: 0 0 5px rgba(66, 133, 244, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .variable-selector {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 0;
+      margin-bottom: 15px;
+  }
+
+  .variable-selector label {
+      margin-bottom: 5px;
+  }
+
+  .variable-selector select {
+      width: 100%;
+  }
+
+  .chart-type-selector {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 10px;
+  }
+
+  .chart-type-selector label {
+      margin-bottom: 5px;
+  }
+
+  .chart-type-selector select {
+      width: 100%;
+  }
+
+  .Bar_list_item {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .Bar_para_item_day,
+  .Bar_para_item_month,
+  .Bar_para_item_year {
+      min-width: 100%;
+      padding: 10px;
+  }
+
+  .donut_list_item {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .donut_para_item_day,
+  .donut_para_item_month,
+  .donut_para_item_year {
+      min-width: 100%;
+      padding: 10px;
+  }
+
+  .Bar_container {
+      flex-direction: column;
+      height: auto;
+      padding: 10px;
+  }
+
+  .Bar_chart {
+      width: 100%;
+      height: 400px;
+      padding: 10px;
+  }
+
+  .Bar_content {
+      width: 100%;
+  }
+}

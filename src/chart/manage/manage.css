@@ -1,0 +1,284 @@
+.data-list-container {
+  padding: 30px;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e6efff 100%); /* Gradient nền nhẹ */
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Bóng đổ nổi bật */
+  margin: 20px; /* Khoảng cách lề ngoài */
+  width: calc(100% - 40px); /* Rộng toàn bộ trang, trừ margin 20px mỗi bên */
+  transition: all 0.3s ease; /* Hiệu ứng mượt mà */
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 30px;
+}
+
+.data-list-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #464AAD, #6b7cff); /* Gradient chữ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Bóng chữ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.header-icon {
+  font-size: 28px;
+  color: #464AAD;
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #464AAD, #6b7cff); /* Gradient đồng bộ với tiêu đề */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  background: linear-gradient(90deg, #3b3f9f, #5a5fd8); /* Gradient hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.download-icon {
+  font-size: 18px;
+}
+
+.table-wrapper {
+  max-height: 600px; /* Giảm chiều cao để gọn hơn */
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background: white; /* Nền trắng cho bảng */
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); /* Bóng nhẹ bên trong */
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.data-table th,
+.data-table td {
+  padding: 14px 18px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 15px;
+}
+
+.data-table th {
+  background: linear-gradient(90deg, #464AAD, #5a5fd8); /* Gradient header */
+  color: white;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.column-icon {
+  margin-right: 8px;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+/* Xen kẽ màu dòng */
+.data-table tbody tr:nth-child(even) {
+  background-color: #f8faff; /* Màu nền xen kẽ nhẹ */
+}
+
+/* Hover dòng */
+.data-table tbody tr:hover {
+  background-color: #e6efff; /* Màu hover nổi bật */
+  transform: scale(1.01); /* Hiệu ứng phóng to nhẹ */
+  transition: all 0.2s ease;
+}
+
+/* Định dạng các cột dữ liệu */
+.temperature-cell {
+  color: #3b82f6; /* Màu xanh dương cho Nhiệt độ */
+  font-weight: 600;
+}
+
+.humidity-cell {
+  color: #10b981; /* Màu xanh lá cho Độ ẩm */
+  font-weight: 600;
+}
+
+.energy-cell {
+  color: #eab308; /* Màu vàng cho Năng lượng */
+  font-weight: 600;
+}
+
+/* Animation fade-in cho các dòng */
+.fade-in-row {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Thanh cuộn tùy chỉnh */
+.table-wrapper::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #464AAD, #6b7cff); /* Gradient thanh cuộn */
+  border-radius: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #3b3f9f, #5a5fd8);
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f0f4ff; /* Nền thanh cuộn */
+  border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .data-list-container {
+    margin: 10px; /* Giảm margin trên mobile */
+    padding: 20px;
+    width: calc(100% - 20px); /* Rộng toàn bộ, trừ margin 10px mỗi bên */
+  }
+
+  .header-wrapper {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .data-list-container h2 {
+    font-size: 22px;
+  }
+
+  .download-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .download-icon {
+    font-size: 16px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .table-wrapper {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .data-table th,
+  .data-table td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .data-list-container h2 {
+    font-size: 20px;
+  }
+
+  .column-icon {
+    font-size: 14px;
+  }
+
+  .data-list-container {
+    margin: 5px; /* Giảm margin trên mobile nhỏ */
+    width: calc(100% - 10px); /* Rộng toàn bộ */
+  }
+
+  .download-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .download-icon {
+    font-size: 14px;
+  }
+}
+
+/* Room Selector - Đơn giản & Nhanh */
+.room-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.room-selector button {
+  padding: 10px 16px;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  color: #374151;
+  transition: all 0.15s ease;
+}
+
+.room-selector button:hover {
+  border-color: #3b82f6;
+  background: #f8fafc;
+}
+
+.room-selector button.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.loading, .no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #6b7280;
+  margin: 20px 0;
+  padding: 16px;
+}
+
+.loading {
+  background: #f9fafb;
+  border-radius: 4px;
+}
+
+.no-data {
+  background: #fef3cd;
+  color: #92400e;
+  border-radius: 4px;
+}
